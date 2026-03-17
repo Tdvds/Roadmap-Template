@@ -114,8 +114,4 @@ No build tools. No dependencies. No npm install. Just two files.
 -  **School assignments** — risk analysis and implementation planning
 -  **Board presentations** — executive-level security strategy overview
 
----
 
-## License
-
-MIT — free to use, adapt, and share.
