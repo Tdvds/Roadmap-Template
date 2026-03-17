@@ -111,7 +111,6 @@ No build tools. No dependencies. No npm install. Just two files.
 ## Use Cases
 
 -  **Security audits** — present findings and remediation steps to clients
--  **Compliance projects** — ISO 27001, ISO 27005, NEN 7510, BIO
 -  **School assignments** — risk analysis and implementation planning
 -  **Board presentations** — executive-level security strategy overview
 
