@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>security Roadmap</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f3ef;
+      --surface: #ffffff;
+      --border: #e4e2db;
+      --border-inner: #eeece6;
+      --text-primary: #1a1a18;
+      --text-secondary: #6b6960;
+      --text-muted: #9b9890;
+      --accent-0: #2a6049;
+      --accent-1: #1f4e78;
+      --accent-2: #5a2d82;
+      --tag-0: #e6f3ee;
+      --tag-1: #ddeaf5;
+      --tag-2: #ede6f5;
+      --bubble-purple-bg: #ede6f5;
+      --bubble-purple-text: #5a2d82;
+      --bubble-blue-bg: #ddeaf5;
+      --bubble-blue-text: #1f4e78;
+      --radius-sm: 10px;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The scaler wraps everything and shrinks to fit */
+    #scaler {
+      width: 1400px;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      transform-origin: top left;
+    }
+
+    header {
+      padding: 28px 0 0;
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background: var(--border);
+      padding: 3px 11px;
+      border-radius: 99px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 480px;
+      align-self: flex-end;
+      padding-bottom: 2px;
+    }
+
+    /* Roadmap fills remaining vertical space */
+    .roadmap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0 20px;
+      min-height: 0;
+    }
+
+    .phase {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .phase:nth-child(1) { animation-delay: 0.05s; }
+    .phase:nth-child(2) { animation-delay: 0.13s; }
+    .phase:nth-child(3) { animation-delay: 0.21s; }
+    /* connectors sit between phases */
+    .phase:nth-child(3) { animation-delay: 0.21s; }
+    .phase:nth-child(5) { animation-delay: 0.27s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0 6px;
+      flex-shrink: 0;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 11px 4px 8px;
+      border-radius: 99px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .phase[data-phase="0"] .phase-badge { background: var(--tag-0); color: var(--accent-0); }
+    .phase[data-phase="1"] .phase-badge { background: var(--tag-1); color: var(--accent-1); }
+    .phase[data-phase="2"] .phase-badge { background: var(--tag-2); color: var(--accent-2); }
+
+    .phase-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .phase[data-phase="0"] .dot { background: var(--accent-0); }
+    .phase[data-phase="1"] .dot { background: var(--accent-1); }
+    .phase[data-phase="2"] .dot { background: var(--accent-2); }
+
+    .phase-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .phase-label {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .phase-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .phase-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Cards fill the phase row */
+    .measures {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+      min-height: 0;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .card-top {
+      padding: 14px 16px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .card-icon-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .card-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .card-risico-id {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--bubble-purple-bg);
+      color: var(--bubble-purple-text);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .card-responsible {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--bubble-blue-bg);
+      color: var(--bubble-blue-text);
+      width: fit-content;
+    }
+
+    .card-desc {
+      padding: 0 16px 10px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-kpi {
+      border-top: 1px solid var(--border-inner);
+      background: #faf9f7;
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .card-kpi-label {
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--text-muted);
+    }
+
+    .card-kpi-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Thin connector between phases */
+    .connector {
+      display: flex;
+      align-items: center;
+      padding-left: 6px;
+      gap: 4px;
+      height: 10px;
+      flex-shrink: 0;
+      opacity: 0.28;
+    }
+    .connector span {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+<div id="scaler">
+  <header>
+    <div class="header-left">
+      <span class="eyebrow">security Strategie</span>
+      <h1>Implementatie Roadmap</h1>
+    </div>
+    <p class="subtitle">Een gefaseerd overzicht van prioritaire maatregelen, geordend op tijdlijn en impact van directe quick wins tot langetermijnverbetering.</p>
+  </header>
+  <div class="roadmap" id="roadmap"></div>
+</div>
+
+<script>
+function render(data) {
+  const container = document.getElementById('roadmap');
+  data.phases.forEach((phase, i) => {
+    if (i > 0) {
+      const conn = document.createElement('div');
+      conn.className = 'connector';
+      conn.innerHTML = '<span></span><span></span><span></span>';
+      container.appendChild(conn);
+    }
+
+    const el = document.createElement('div');
+    el.className = 'phase';
+    el.setAttribute('data-phase', phase.id);
+
+    el.innerHTML = `
+      <div class="phase-header">
+        <span class="phase-badge"><span class="dot"></span>${phase.badge}</span>
+        <div class="phase-title-group">
+          <div class="phase-label">${phase.label}</div>
+          <div class="phase-sub">${phase.sub}</div>
+        </div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="measures">
+        ${phase.measures.map(m => `
+          <div class="card">
+            <div class="card-top">
+              <div class="card-icon-row">
+                <div class="card-icon">${m.icon}</div>
+                <span class="card-risico-id">${m.risicoId}</span>
+              </div>
+              <div class="card-title">${m.title}</div>
+              <span class="card-responsible">${m.responsible}</span>
+            </div>
+            <div class="card-desc">${m.desc}</div>
+            <div class="card-kpi">
+              <div class="card-kpi-label">Resultaat / KPI</div>
+              <div class="card-kpi-text">${m.kpi}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(el);
+  });
+
+  scaleToFit();
+}
+
+function scaleToFit() {
+  const scaler = document.getElementById('scaler');
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const naturalW = 1400;
+
+  // Scale to fill width first
+  let scale = vw / naturalW;
+
+  // Check if height fits; if not, scale down further
+  scaler.style.transform = `scale(${scale})`;
+  scaler.style.width = naturalW + 'px';
+
+  const scaledH = scaler.getBoundingClientRect().height;
+  if (scaledH > vh) {
+    scale = scale * (vh / scaledH);
+    scaler.style.transform = `scale(${scale})`;
+  }
+
+  // Centre vertically if there's leftover space
+  const finalH = scaler.getBoundingClientRect().height;
+  const topOffset = Math.max(0, (vh - finalH) / 2);
+  scaler.style.marginTop = topOffset + 'px';
+
+  // Also set explicit height on scaler so flex children fill it
+  scaler.style.height = (vh / scale) + 'px';
+}
+
+window.addEventListener('resize', scaleToFit);
+
+fetch('roadmap-data.json')
+  .then(r => r.json())
+  .then(render)
+  .catch(err => {
+    document.getElementById('roadmap').innerHTML =
+      `<p style="color:#c0392b;padding:16px">Kon roadmap-data.json niet laden: ${err.message}</p>`;
+  });
+</script>
+</body>
+</html>

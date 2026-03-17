@@ -1,0 +1,60 @@
+{
+  "phases": [
+    {
+      "id": 0,
+      "badge": "Quick Wins",
+      "label": "0 – 30 dagen",
+      "sub": "Direct uitvoerbaar, hoge impact",
+      "measures": [
+        {
+          "icon": "🔑",
+          "risicoId": "R1, R2",
+          "title": "[Werkwoord] + [wat je doet], bv. 'MFA inschakelen voor alle medewerkers'",
+          "responsible": "Functienaam, bv. 'IT-beheerder' of 'IT-beheerder / HR'",
+          "desc": "Beschrijf in 2–4 zinnen wat de maatregel inhoudt en waarom die nodig is. Schrijf voor een niet-technisch publiek. Vermijd jargon of leg het uit.",
+          "kpi": "Meetbaar doel binnen een tijdpad. Bewijs: naam van het rapport of document dat aantoont dat het klaar is."
+        },
+        {
+          "icon": "🛡️",
+          "risicoId": "R3, R5",
+          "title": "[Werkwoord] + [wat je doet], bv. 'Patchbeleid instellen voor alle systemen'",
+          "responsible": "Functienaam, bv. 'Systeemeigenaar'",
+          "desc": "Beschrijf in 2–4 zinnen wat de maatregel inhoudt en waarom die nodig is. Schrijf voor een niet-technisch publiek. Vermijd jargon of leg het uit.",
+          "kpi": "Meetbaar doel binnen een tijdpad. Bewijs: naam van het rapport of document dat aantoont dat het klaar is."
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "badge": "Korte termijn",
+      "label": "1 – 3 maanden",
+      "sub": "Korte zin die beschrijft wat de maatregelen in deze fase gemeenschappelijk hebben",
+      "measures": [
+        {
+          "icon": "💾",
+          "risicoId": "R4",
+          "title": "[Werkwoord] + [wat je doet], bv. 'Offline back-ups inrichten voor kritische systemen'",
+          "responsible": "Functienaam, bv. 'IT-beheerder'",
+          "desc": "Beschrijf in 2–4 zinnen wat de maatregel inhoudt en waarom die nodig is. Schrijf voor een niet-technisch publiek. Vermijd jargon of leg het uit.",
+          "kpi": "Meetbaar doel binnen een tijdpad. Bewijs: naam van het rapport of document dat aantoont dat het klaar is."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "badge": "Middellange termijn",
+      "label": "3 – 12 maanden",
+      "sub": "Korte zin die beschrijft wat de maatregelen in deze fase gemeenschappelijk hebben",
+      "measures": [
+        {
+          "icon": "🔒",
+          "risicoId": "R6, R7",
+          "title": "[Werkwoord] + [wat je doet], bv. 'Database versleutelen en toegang beperken op functie'",
+          "responsible": "Functienaam, bv. 'CISO'",
+          "desc": "Beschrijf in 2–4 zinnen wat de maatregel inhoudt en waarom die nodig is. Schrijf voor een niet-technisch publiek. Vermijd jargon of leg het uit.",
+          "kpi": "Meetbaar doel binnen een tijdpad. Bewijs: naam van het rapport of document dat aantoont dat het klaar is."
+        }
+      ]
+    }
+  ]
+}
